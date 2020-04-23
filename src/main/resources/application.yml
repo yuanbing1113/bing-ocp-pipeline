@@ -1,0 +1,50 @@
+spring:
+  profiles:
+    active: local
+---
+spring:
+  profiles: local
+  application:
+    name: ocp-10-demo1
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:15432/bing
+    username: ${PG_USER:pgbing}
+    password: ${PG_PASSWORD:pass4you}
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true # 2.2.0 later fiexed
+#    database-platform: org.hibernate.dialect.PostgreSQL9Dialect # 2.2.0 later fiexed
+
+
+
+hello: local-10
+
+
+---
+spring:
+  profiles: ocp
+  application:
+    name: ocp-10-demo1  
+  datasource:
+    url: jdbc:postgresql://postgresql-bing:5432/bing
+    username: ${PG_USER}
+    password: ${PG_PASSWORD}
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true # 2.2.0 later fiexed
+#    database-platform: org.hibernate.dialect.PostgreSQL9Dialect # 2.2.0 later fiexed
+hello: ocp-10-webhook-ssl-token
